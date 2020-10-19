@@ -11,7 +11,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class JavaMailUtil {
-
+//the method to send mail 
     public static void sendMail(String sender, String recipient, String msg, String subject) throws Exception {
         Properties properties = new Properties();
 
