@@ -18,20 +18,28 @@ public class PatientView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+        //variable declaration
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         panel2 = new java.awt.Panel();
         Appoint = new javax.swing.JButton();
         Appoint1 = new javax.swing.JButton();
         Appoint2 = new javax.swing.JButton();
+        //JTextField for patient id
         TF_PID = new javax.swing.JTextField();
+        //JTextField for patient name
         TF_Name = new javax.swing.JTextField();
+        //JTextField for sex
         TF_Sex = new javax.swing.JTextField();
+        //JTextField for blood group
         TF_Bloodgrp = new javax.swing.JTextField();
+        //JTextField for age
         TF_Age = new javax.swing.JTextField();
+        //JTextField for email
         TF_Email = new javax.swing.JTextField();
+        //JTextField for prescription
         TF_Presc = new javax.swing.JTextField();
+        
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -44,7 +52,7 @@ public class PatientView extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Patient Details");
-
+        //logout button
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("Logout");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -52,7 +60,7 @@ public class PatientView extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-
+        //To make appointment
         Appoint.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Appoint.setText("Make Appointment");
         Appoint.setToolTipText("");
@@ -61,7 +69,7 @@ public class PatientView extends javax.swing.JFrame {
                 AppointActionPerformed(evt);
             }
         });
-
+        //to cancel appointment
         Appoint1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Appoint1.setText("Cancel Appointment");
         Appoint1.setToolTipText("");
@@ -70,7 +78,7 @@ public class PatientView extends javax.swing.JFrame {
                 Appoint1ActionPerformed(evt);
             }
         });
-
+        //UI layout
         javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);
         panel2.setLayout(panel2Layout);
         panel2Layout.setHorizontalGroup(
@@ -149,7 +157,7 @@ public class PatientView extends javax.swing.JFrame {
                 TF_PrescActionPerformed(evt);
             }
         });
-
+        //To view details of the patient
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel17.setText("ID :");
 
