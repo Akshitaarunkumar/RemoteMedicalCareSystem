@@ -19,12 +19,16 @@ public class OnlineCon extends javax.swing.JFrame {
         try {
             Connection conn = null;
             PreparedStatement pst;
+            //database connection
             Class.forName("com.mysql.cj.jdbc.Driver");
+            //database name=she_db,user=user1,password=xxxx
             conn = DriverManager.getConnection("jdbc:mysql://localhost/she_db", "user1", "xxxx");
-
+            //query to select from doctor table with general speciality
             String sql = ("select dname from she_db.doctor where speciality='General'");
+            //prepared statement to execute query
             pst = conn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
+            //to add record
             while (rs.next()) {
                 String reg1 = rs.getString("dname");
                 dname.addItem(reg1);
@@ -43,7 +47,7 @@ public class OnlineCon extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+        //variable declaration
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
@@ -78,7 +82,7 @@ public class OnlineCon extends javax.swing.JFrame {
         RegFormButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
+        //for online consultation
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Online Consultation");
 
@@ -96,7 +100,7 @@ public class OnlineCon extends javax.swing.JFrame {
                 pidActionPerformed(evt);
             }
         });
-
+        //UI layout
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -125,7 +129,8 @@ public class OnlineCon extends javax.swing.JFrame {
                     .addComponent(dname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23))
         );
-
+        
+        //to provide necessary details
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Temperature : ");
 
@@ -275,7 +280,7 @@ public class OnlineCon extends javax.swing.JFrame {
                             .addComponent(b2, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addGap(12, 12, 12))
         );
-
+        //submit button
         sub.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         sub.setText("Submit");
         sub.addActionListener(new java.awt.event.ActionListener() {
@@ -283,7 +288,7 @@ public class OnlineCon extends javax.swing.JFrame {
                 subActionPerformed(evt);
             }
         });
-
+        //back button
         RegFormButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         RegFormButton3.setText("Back");
         RegFormButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -371,17 +376,21 @@ public class OnlineCon extends javax.swing.JFrame {
             Connection con = null;
             PreparedStatement pstmst;
             PreparedStatement pstmst1;
+            //databse connection
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost/she_db", "user1", "xxxx");
-
+            //query to insert into onlinecon table
             String q = ("insert into she_db.onlinecon values(?,?,?,?,?,?,?,?)");
+            //prepared statement to execute query
             pstmst = con.prepareStatement(q);
-
+            //query to select doctor from table given doctor id
             String q1 = "select d_id from doctor where `dname`=?";
+            //prepared statement to execute query
             pstmst1 = con.prepareStatement(q1);
             String nam;
             nam = dname.getSelectedItem().toString();
             pstmst1.setString(1, nam);
+            //to get the result of query
             ResultSet rs = pstmst1.executeQuery();
             int reg1 = 0;
             while (rs.next()) {
@@ -397,6 +406,7 @@ public class OnlineCon extends javax.swing.JFrame {
             pstmst.setString(6, j);
             pstmst.setString(7, b);
             pstmst.executeUpdate();
+            //message after successful submission
             JOptionPane.showMessageDialog(null, "Successful Submission");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -475,6 +485,7 @@ public class OnlineCon extends javax.swing.JFrame {
             }
         });
     }
+    
     private String v;
     private String h;
     private String j;
