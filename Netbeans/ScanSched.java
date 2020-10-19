@@ -22,12 +22,17 @@ public class ScanSched extends javax.swing.JFrame {
         try {
             Connection conn = null;
             PreparedStatement pst;
+            //connection to database
             Class.forName("com.mysql.cj.jdbc.Driver");
+            //database name=blooddon,user=user1,password=xxxx
             conn = DriverManager.getConnection("jdbc:mysql://localhost/blooddon", "user1", "xxxx");
-
+            //query to select from scan table
             String sql = "select type from she_db.scan";
+            //prepred statement to select from table
             pst = conn.prepareStatement(sql);
+            //query execution
             ResultSet rs = pst.executeQuery();
+            //display records from table
             while (rs.next()) {
                 String reg1 = rs.getString("type");
                 type.addItem(reg1);
@@ -46,7 +51,7 @@ public class ScanSched extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+        // Variables declaration
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -70,14 +75,11 @@ public class ScanSched extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        //to schedule scan
         jLabel1.setText("Schedule Scan");
-
         jLabel2.setText("Name of Patient :");
-
         jLabel3.setText("Patient ID :");
-
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
         jLabel4.setText("Choose Type of Test/Scan :");
 
         date.addActionListener(new java.awt.event.ActionListener() {
@@ -85,15 +87,12 @@ public class ScanSched extends javax.swing.JFrame {
                 dateActionPerformed(evt);
             }
         });
-
+        //to select date and slot
         jLabel5.setText("Choose Date :");
-
         jLabel6.setText("Choose Slot :");
-
         slot.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm" }));
-
         jLabel8.setText("Specification:");
-
+        //UI layout to schedule scan
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -317,10 +316,13 @@ public class ScanSched extends javax.swing.JFrame {
         try {
             Connection con = null;
             PreparedStatement pstmst;
+            //connection to database
             Class.forName("com.mysql.cj.jdbc.Driver");
+            //database name=blooddon,user=user1,password=xxxx
             con = DriverManager.getConnection("jdbc:mysql://localhost/blooddon", "user1", "xxxx");
-
+            //query to insert records into scandate table
             String q = "insert into she_db.scandate values(?,?,?,?,?,?)";
+            //prepared statement to insert records into scandate table
             pstmst = con.prepareStatement(q);
 
             pstmst.setInt(1, Integer.parseInt(pid.getText()));
@@ -330,6 +332,7 @@ public class ScanSched extends javax.swing.JFrame {
             pstmst.setString(5, slot.getSelectedItem().toString());
             pstmst.setString(6, spec.getText());
             pstmst.executeUpdate();
+            //Message on successful action performed
             JOptionPane.showMessageDialog(null, "Successful Appointment for Scan Created");
         } catch (HeadlessException | ClassNotFoundException | NumberFormatException | SQLException e) {
             JOptionPane.showMessageDialog(null, e);
@@ -376,7 +379,7 @@ public class ScanSched extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration//GEN-BEGIN:variables
     private org.jdesktop.swingx.JXDatePicker date;
     public javax.swing.JTextField did;
     private javax.swing.JLabel jLabel1;
