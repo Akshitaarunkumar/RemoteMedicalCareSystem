@@ -30,7 +30,7 @@ public class ScanResult extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+        //variable declaration
         jComboBox1 = new javax.swing.JComboBox<>();
         Open = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -38,10 +38,14 @@ public class ScanResult extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        //JTextfield for doctor id
         did = new javax.swing.JTextField();
         name = new javax.swing.JComboBox<>();
+        //JTextfield for patient id
         pid = new javax.swing.JTextField();
+        //JTextfield for type
         type = new javax.swing.JTextField();
+        //JTextfield for specification
         spec = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -59,15 +63,11 @@ public class ScanResult extends javax.swing.JFrame {
                 OpenActionPerformed(evt);
             }
         });
-
+        //Display scan result
         jLabel1.setText("View Scan Results");
-
         jLabel2.setText("Choose Patient:");
-
         jLabel3.setText("Patient ID:");
-
         jLabel4.setText("Type Of Scan:");
-
         jLabel5.setText("Your ID:");
 
         did.setEditable(false);
@@ -99,21 +99,21 @@ public class ScanResult extends javax.swing.JFrame {
         reply.setColumns(20);
         reply.setRows(5);
         jScrollPane1.setViewportView(reply);
-
+        //submit button
         sub.setText("Submit");
         sub.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 subActionPerformed(evt);
             }
         });
-
+        //back button
         sub1.setText("Back");
         sub1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sub1ActionPerformed(evt);
             }
         });
-
+        //UI layout
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -195,7 +195,7 @@ public class ScanResult extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void OpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenActionPerformed
-        // TODO add your handling code here:
+        // TO choose file
         JFileChooser chooser = new JFileChooser("C:/Users/abcd/Desktop/SHE");
         chooser.showOpenDialog(null);
         File f = chooser.getSelectedFile();
@@ -212,14 +212,18 @@ public class ScanResult extends javax.swing.JFrame {
         try {
             Connection conn = null;
             PreparedStatement pst1;
+            //to connect to database
             Class.forName("com.mysql.cj.jdbc.Driver");
+            //Database name=blooddon,user=user1,password=xxxx
             conn = DriverManager.getConnection("jdbc:mysql://localhost/blooddon", "user1", "xxxx");
-
+            //query to select patient record
             String q = "select pname from she_db.patient where p_id in(select p_id from she_db.scandate where d_id=?)";
+            //prepared statement to select record
             pst1 = conn.prepareStatement(q);
             pst1.setInt(1, id1);
             ResultSet rs = pst1.executeQuery();
             name.removeAllItems();
+            //to display the record
             while (rs.next()) {
                 String reg1 = rs.getString("pname");
                 name.addItem(reg1);
@@ -233,16 +237,21 @@ public class ScanResult extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Connection con = null;
+            //database connection
             Class.forName("com.mysql.cj.jdbc.Driver");
+            //Database name=blooddon,user=user1,password=xxxx
             con = DriverManager.getConnection("jdbc:mysql://localhost/blooddon", "user1", "xxxx");
             ResultSet rs;
             PreparedStatement pst;
-
+            //query to select the given patient record with patient id
             String sql = "select p_id from she_db.patient where pname=?";
+            //prepared statement to select record
             pst = con.prepareStatement(sql);
             pst.setString(1, name.getSelectedItem().toString());
+            
             rs = pst.executeQuery();
             int a = 0;
+            //to display the retrived record
             while (rs.next()) {
                 a = rs.getInt("p_id");
             }
@@ -250,12 +259,14 @@ public class ScanResult extends javax.swing.JFrame {
 
             ResultSet rs1;
             PreparedStatement pst1;
+            //query to select type and specification from scandate table
             String sql1 = "select type,spec from she_db.scandate where p_id=?";
             pst1 = con.prepareStatement(sql1);
             pst1.setInt(1, Integer.parseInt(pid.getText()));
             rs1 = pst1.executeQuery();
             String b = null;
             String c = null;
+            //display record
             while (rs1.next()) {
                 b = rs1.getString("type");
                 c = rs1.getString("spec");
@@ -275,6 +286,7 @@ public class ScanResult extends javax.swing.JFrame {
         // TODO add your handling code here:
         String msg = new String();
         msg = reply.getText();
+        //to send mail of scan results
         try {
             JavaMailUtil.sendMail("abcd@gmail.com", "xyz@gmail.com", msg, "Scan Results");
         } catch (Exception ex) {
@@ -324,7 +336,7 @@ public class ScanResult extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration//GEN-BEGIN:variables
     private javax.swing.JButton Open;
     public javax.swing.JTextField did;
     private javax.swing.JComboBox<String> jComboBox1;
