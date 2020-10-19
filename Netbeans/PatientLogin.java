@@ -14,7 +14,7 @@ public class PatientLogin extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+        //variable declaration
         TF_Uname1 = new javax.swing.JTextField();
         LogFormButton = new javax.swing.JButton();
         UnameLabel = new javax.swing.JLabel();
@@ -31,7 +31,7 @@ public class PatientLogin extends javax.swing.JFrame {
                 TF_Uname1ActionPerformed(evt);
             }
         });
-
+        //login button
         LogFormButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         LogFormButton.setText("Login");
         LogFormButton.addActionListener(new java.awt.event.ActionListener() {
@@ -39,10 +39,9 @@ public class PatientLogin extends javax.swing.JFrame {
                 LogFormButtonActionPerformed(evt);
             }
         });
-
+        //patient login
         UnameLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         UnameLabel.setText("Name :");
-
         PassLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         PassLabel.setText("Password :");
 
@@ -55,7 +54,7 @@ public class PatientLogin extends javax.swing.JFrame {
 
         LogFormTitle.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         LogFormTitle.setText("Enter patient details");
-
+        //back button
         RegFormButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         RegFormButton2.setText("Back");
         RegFormButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -63,7 +62,7 @@ public class PatientLogin extends javax.swing.JFrame {
                 RegFormButton2ActionPerformed(evt);
             }
         });
-
+        //UI layout
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,10 +123,13 @@ public class PatientLogin extends javax.swing.JFrame {
         ResultSet rs;
         
         try {
+            //database connection
             Class.forName("com.mysql.cj.jdbc.Driver");
+            //databse name=blooddon,user=user1,password=xxxx
             con= DriverManager.getConnection("jdbc:mysql://localhost/blooddon","user1","xxxx");
+            //query to select patient record given username and password
             String query= ("SELECT * FROM she_db.patient WHERE `pname` =? AND `password` =?");
-            
+            //prepared statement to execute query
             ps= con.prepareStatement(query);
             ps.setString(1, Name1);
             ps.setString(2, Pass1);
