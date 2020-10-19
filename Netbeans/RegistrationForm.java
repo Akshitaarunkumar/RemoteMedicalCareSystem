@@ -3,7 +3,7 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 
 public class RegistrationForm extends javax.swing.JFrame {
-    
+    //to get s\user name and password
     String Name = new String();
     String Pass = new String();
     FormUtil FUtil = new FormUtil();
@@ -22,66 +22,79 @@ public class RegistrationForm extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        
+        //JTextField to get sex
         TF_Sex = new javax.swing.JTextField();
+        //JTextField to get name
         TF_Name = new javax.swing.JTextField();
+        //JTextField to get age
         TF_Age = new javax.swing.JTextField();
+        //JTextField to get prescription
         TF_Presc = new javax.swing.JTextField();
+        //JTextField to get blood group
         TF_Bloodgrp = new javax.swing.JTextField();
+        //JTextField to get password
         TF_Pass = new javax.swing.JPasswordField();
+        
         RegFormButton = new javax.swing.JButton();
         RegFormButton2 = new javax.swing.JButton();
         RegFormButton1 = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
+        
+        
+        //JTextField to get email
         TF_Email = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
+        //to set font
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        
+        //set text for the labels
         jLabel1.setText("Enter your details");
-
         jLabel2.setText("Name :");
-
         jLabel3.setText("Sex :");
-
         jLabel4.setText("Age :");
-
         jLabel6.setText("Prescription :");
-
         jLabel7.setText("Blood group :");
-
         jLabel16.setText("Password :");
-
+        
+        //Action listener to add sex
         TF_Sex.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TF_SexActionPerformed(evt);
             }
         });
 
+        //Action listener to add name
         TF_Name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TF_NameActionPerformed(evt);
             }
         });
 
+        //Action listener to add age
         TF_Age.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TF_AgeActionPerformed(evt);
             }
         });
 
+        //Action listener to add prescription
         TF_Presc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TF_PrescActionPerformed(evt);
             }
         });
 
+        //Action listener to add blood group
         TF_Bloodgrp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TF_BloodgrpActionPerformed(evt);
             }
         });
-
+        
+        //Action listener to add password
         TF_Pass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TF_PassActionPerformed(evt);
@@ -89,6 +102,8 @@ public class RegistrationForm extends javax.swing.JFrame {
         });
 
         RegFormButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        
+        //Register button
         RegFormButton.setText("Register");
         RegFormButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,6 +111,7 @@ public class RegistrationForm extends javax.swing.JFrame {
             }
         });
 
+        //Back button
         RegFormButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         RegFormButton2.setText("Back");
         RegFormButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -104,6 +120,7 @@ public class RegistrationForm extends javax.swing.JFrame {
             }
         });
 
+        //Go to account button
         RegFormButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         RegFormButton1.setText("Go to account");
         RegFormButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -112,14 +129,16 @@ public class RegistrationForm extends javax.swing.JFrame {
             }
         });
 
+       
         jLabel8.setText("Email ID:");
-
+        //Action listener to add email
         TF_Email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TF_EmailActionPerformed(evt);
             }
         });
-
+        
+        //UI layout
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -235,10 +254,14 @@ public class RegistrationForm extends javax.swing.JFrame {
         Connection con= null;
         PreparedStatement ps=null;
         try{
+            //To connect to database
             Class.forName("com.mysql.cj.jdbc.Driver");
+            //database name=she_db,table name=user1,password=xxxx
             con= DriverManager.getConnection("jdbc:mysql://localhost/she_db","user1","xxxx");
+            //query to insert into the patient table of the database
             String query= ("INSERT INTO she_db.patient (pname,password,sex,bloodgrp,age,prescription,email) VALUES (?,?,?,?,?,?,?)");
             
+            //prepared statement to insert into the patient table of the database
             ps= con.prepareStatement(query);
             ps.setString(1, Name);
             ps.setString(2, Pass);
@@ -247,7 +270,8 @@ public class RegistrationForm extends javax.swing.JFrame {
             ps.setInt(5, Age);
             ps.setString(6, Presc);
             ps.setString(7, Email);
-           
+            
+           //message displayed after successful insertion into table
             if(ps.executeUpdate()>0)
             {
                 JOptionPane.showMessageDialog(null, "New Patient Added");
