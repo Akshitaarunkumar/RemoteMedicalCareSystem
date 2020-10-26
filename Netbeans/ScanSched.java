@@ -1,4 +1,6 @@
-
+///the doctors have the option to schedule a scan or a test from a given list for any of the patients currently consulting with them. 
+//They can choose the patient, fill in the required details and this information is stored in the scandate table. 
+//The patient will get a reminder of this. This action is handled by the ScanSched.java file.
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;
