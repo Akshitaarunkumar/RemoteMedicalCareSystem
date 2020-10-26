@@ -1,4 +1,4 @@
-
+//The patient side is handled by the PatientView.java code allows them to schedule appointments, cancel, view their current details, fill in an online consultation form with their symptoms etc.
 import javax.swing.JOptionPane;
 
 public class PatientView extends javax.swing.JFrame {
