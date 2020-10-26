@@ -1,3 +1,5 @@
+//For patients the login is handled by PatientLogin.java which fetches information from the Patient table.
+
 import java.sql.*;
 import javax.swing.JOptionPane;
 
