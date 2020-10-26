@@ -1,4 +1,7 @@
-
+//on the doctors side, they can view the results for their patients once it comes in. 
+//They can open an external file containing the results for a particular patient and can then send the patient their diagnosis and remarks. 
+//This reaches the patient through their email.
+//ScanResult.java does this.
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
