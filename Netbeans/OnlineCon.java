@@ -1,4 +1,6 @@
-
+//Details such as sleep patterns, joint pain, and other symptoms are stored in the OnlineCon table. 
+//They also select a particular doctor to send this information to. 
+//this entire action on the patients side is handled by the OnlineCon.java file.
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
