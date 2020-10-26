@@ -1,3 +1,4 @@
+//RegistrationForm.java handles the part of taking patient details and storing all this information in the Patient table.
 import java.awt.HeadlessException;
 import java.sql.*;
 import javax.swing.JOptionPane;
